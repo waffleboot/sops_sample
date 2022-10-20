@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - echo hello world
+
+  encode:
+    cmds:
+      - echo encode
+
+  decode:
+    cmds:
+      - echo decode
