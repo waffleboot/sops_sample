@@ -28,6 +28,10 @@ tasks:
     cmds:
       - "{{.sops}} -decrypt enc.values.yml"
 
+  decode-ignore-mac:
+    cmds:
+      - "{{.sops}} --ignore-mac -decrypt enc.values.yml"
+
   help:
     cmds:
       - "{{.sops}} help"

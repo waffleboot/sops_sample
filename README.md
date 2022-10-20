@@ -1,5 +1,6 @@
 - task keygen
 - task encode
 - task decode
+- task decode-ignore-mac
 - task update -- '["database"]["password"] "secret"'
 - task update -- '["token"] "secret_token"'
