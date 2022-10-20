@@ -1,0 +1,5 @@
+- task keygen
+- task encode
+- task decode
+- task update -- '["database"]["password"] "secret"'
+- task update -- '["token"] "secret_token"'

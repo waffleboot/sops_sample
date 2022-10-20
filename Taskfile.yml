@@ -1,14 +1,33 @@
 version: '3'
 
+silent: true
+
+vars:
+  sops: docker run -it --rm -v $(pwd):/data -w /data --env SOPS_AGE_KEY_FILE=/data/key.txt
+        mozilla/sops sops
+
 tasks:
-  default:
+  keygen:
     cmds:
-      - echo hello world
+      - rm key.txt | true
+      - age-keygen -o key.txt 2>/dev/null
+      - age-keygen -y key.txt > pub.txt
+      - cat pub.txt
 
   encode:
     cmds:
-      - echo encode
+      - "{{.sops}} -encrypt --age $(cat pub.txt) --encrypted-regex '(pass|key|token)' values.yml > enc.values.yml"
+      - cat enc.values.yml
+
+  update:
+    cmds:
+      - "{{.sops}} --set {{.CLI_ARGS}} enc.values.yml"
+      - "{{.sops}} -decrypt enc.values.yml"
 
   decode:
     cmds:
-      - echo decode
+      - "{{.sops}} -decrypt enc.values.yml"
+
+  help:
+    cmds:
+      - "{{.sops}} help"

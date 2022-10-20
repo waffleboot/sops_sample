@@ -1,3 +1,5 @@
 database:
   username: root
   password: 123456
+logging:
+  token: alpha
