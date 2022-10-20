@@ -21,7 +21,7 @@ tasks:
 
   update:
     cmds:
-      - "{{.sops}} --set {{.CLI_ARGS}} enc.values.yml"
+      - "{{.sops}} --ignore-mac --set {{.CLI_ARGS}} enc.values.yml"
       - "{{.sops}} -decrypt enc.values.yml"
 
   decode:
